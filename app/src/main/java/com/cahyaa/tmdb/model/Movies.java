@@ -9,7 +9,16 @@ import java.util.List;
 
 public class Movies implements Parcelable {
 
-    public Movies(){}
+    public Movies() {
+    }
+
+    public Movies(String backdrop_path, String title, String release_date, int vote_count, int popularity) {
+        this.backdrop_path = backdrop_path;
+        this.title = title;
+        this.release_date = release_date;
+        this.vote_count = vote_count;
+        this.popularity = popularity;
+    }
 
     private boolean adult;
     private String backdrop_path;
