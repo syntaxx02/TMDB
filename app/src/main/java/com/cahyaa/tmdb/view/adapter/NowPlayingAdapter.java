@@ -8,15 +8,15 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.cahyaa.tmdb.R;
-import com.cahyaa.tmdb.model.Movies;
+import com.cahyaa.tmdb.model.NowPlaying;
 
 import java.util.List;
 
-public class MoviesAdapter extends RecyclerView.Adapter<MovieViewHolder> {
+public class NowPlayingAdapter extends RecyclerView.Adapter<MovieViewHolder> {
     Context context;
-    List<Movies> movies;
+    List<NowPlaying.Results> movies;
 
-    public MoviesAdapter(Context context, List<Movies> movies) {
+    public NowPlayingAdapter(Context context, List<NowPlaying.Results> movies) {
         this.context = context;
         this.movies = movies;
     }

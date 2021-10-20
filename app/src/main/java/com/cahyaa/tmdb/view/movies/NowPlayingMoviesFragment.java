@@ -6,22 +6,46 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
-import com.cahyaa.tmdb.R;
-import com.cahyaa.tmdb.model.Movies;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.cahyaa.tmdb.databinding.FragmentNowPlayingMoviesBinding;
+import com.cahyaa.tmdb.model.NowPlaying;
+import com.cahyaa.tmdb.view.adapter.NowPlayingAdapter;
+import com.cahyaa.tmdb.viewmodel.MovieViewModel;
 
 public class NowPlayingMoviesFragment extends Fragment {
+
+    private FragmentNowPlayingMoviesBinding binding;
+
+    private MovieViewModel view_model;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_now_playing_movies, container, false);
+        binding = FragmentNowPlayingMoviesBinding.inflate(inflater, container, false);
+        View view = binding.getRoot();
+
+        view_model = new ViewModelProvider(getActivity()).get(MovieViewModel.class);
+        view_model.getNowPlaying();
+        view_model.getResultGetNowPlaying().observe(getActivity(), showNowPlaying);
+
+        return view;
     }
 
-    public void showMovies(){
-        List<Movies> movies = new ArrayList<>();
-        movies.add(new Movies());
+    private Observer<NowPlaying> showNowPlaying = new Observer<NowPlaying>() {
+        @Override
+        public void onChanged(NowPlaying nowPlaying) {
+            binding.rvNowPlayingFragment.setLayoutManager(new LinearLayoutManager(getActivity()));
+            NowPlayingAdapter adapter = new NowPlayingAdapter(getActivity(), nowPlaying.getResults());
+            binding.rvNowPlayingFragment.setAdapter(adapter);
+        }
+    };
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
     }
 }

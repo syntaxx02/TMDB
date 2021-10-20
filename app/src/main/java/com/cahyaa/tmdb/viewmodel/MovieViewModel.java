@@ -8,6 +8,8 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.cahyaa.tmdb.model.Movies;
+import com.cahyaa.tmdb.model.NowPlaying;
+import com.cahyaa.tmdb.model.Search;
 import com.cahyaa.tmdb.repositories.MovieRepository;
 
 public class MovieViewModel extends AndroidViewModel {
@@ -31,4 +33,27 @@ public class MovieViewModel extends AndroidViewModel {
     }
     //End of ViewModel getMovieById
 
+    //*Begin of ViewModel getNowPlaying
+    private MutableLiveData<NowPlaying> resultGetNowPlaying = new MutableLiveData<>();
+
+    public void getNowPlaying() {
+        resultGetNowPlaying = repository.getNowPlayingData();
+    }
+
+    public LiveData<NowPlaying> getResultGetNowPlaying() {
+        return resultGetNowPlaying;
+    }
+    //End of ViewModel getNowPlaying
+
+    //*Begin of ViewModel getMovieResult
+    private MutableLiveData<Search> resultGetMovieResult = new MutableLiveData<>();
+
+    public void getMovieResult(String query) {
+        resultGetMovieResult = repository.getSearchData(query);
+    }
+
+    public LiveData<Search> getResultGetMovieResult() {
+        return resultGetMovieResult;
+    }
+    //End of ViewModel getMovieResult
 }

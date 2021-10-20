@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.cahyaa.tmdb.R;
-import com.cahyaa.tmdb.model.Movies;
+import com.cahyaa.tmdb.model.NowPlaying;
 
 public class MovieViewHolder extends RecyclerView.ViewHolder {
 
@@ -17,7 +17,7 @@ public class MovieViewHolder extends RecyclerView.ViewHolder {
         super(itemView);
     }
 
-    public void bind(Movies movies) {
+    public void bind(NowPlaying.Results movies) {
         ImageView imageView_movie_background = itemView.findViewById(R.id.imageView_movie_background);
         TextView textView_movie_title = itemView.findViewById(R.id.textView_movie_title);
         TextView textView_release_date = itemView.findViewById(R.id.textView_release_date);

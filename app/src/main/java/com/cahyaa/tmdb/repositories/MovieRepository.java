@@ -4,6 +4,8 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.cahyaa.tmdb.helper.Const;
 import com.cahyaa.tmdb.model.Movies;
+import com.cahyaa.tmdb.model.NowPlaying;
+import com.cahyaa.tmdb.model.Search;
 import com.cahyaa.tmdb.retrofit.ApiService;
 
 import retrofit2.Call;
@@ -42,4 +44,39 @@ public class MovieRepository {
         return result;
     }
 
+    public MutableLiveData<NowPlaying> getNowPlayingData() {
+        final MutableLiveData<NowPlaying> result = new MutableLiveData<>();
+
+        ApiService.endPoint().getNowPlaying(Const.API_KEY).enqueue(new Callback<NowPlaying>() {
+            @Override
+            public void onResponse(Call<NowPlaying> call, Response<NowPlaying> response) {
+                result.setValue(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<NowPlaying> call, Throwable t) {
+
+            }
+        });
+
+        return result;
+    }
+
+    public MutableLiveData<Search> getSearchData(String query) {
+        final MutableLiveData<Search> result = new MutableLiveData<>();
+
+        ApiService.endPoint().getMovieResult(Const.API_KEY, query).enqueue(new Callback<Search>() {
+            @Override
+            public void onResponse(Call<Search> call, Response<Search> response) {
+                result.setValue(response.body());
+            }
+
+            @Override
+            public void onFailure(Call<Search> call, Throwable t) {
+
+            }
+        });
+
+        return result;
+    }
 }
