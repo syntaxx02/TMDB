@@ -50,7 +50,7 @@ public class Search {
 
     public static class Results {
         private boolean adult;
-        private Object backdrop_path;
+        private String backdrop_path;
         private List<?> genre_ids;
         private int id;
         private String original_language;
@@ -77,11 +77,11 @@ public class Search {
             this.adult = adult;
         }
 
-        public Object getBackdrop_path() {
+        public String getBackdrop_path() {
             return backdrop_path;
         }
 
-        public void setBackdrop_path(Object backdrop_path) {
+        public void setBackdrop_path(String backdrop_path) {
             this.backdrop_path = backdrop_path;
         }
 

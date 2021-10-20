@@ -36,4 +36,9 @@ public class NowPlayingAdapter extends RecyclerView.Adapter<MovieViewHolder> {
     public int getItemCount() {
         return movies.size();
     }
+
+    public void updateList(List<NowPlaying.Results> results) {
+        this.movies = results;
+        notifyDataSetChanged();
+    }
 }
